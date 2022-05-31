@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+
+.top_right {
+	width: 1200px;
+    display: inline-block;
+    text-align: right;
+    position: relative;
+    padding: 50px 0 22px;
+}
+
+#top_wrap .top_right a span {
+	position : realtive;
+    padding: 0px;
+    font-size: 12px;
+    color: #000;
+    letter-spacing: -.25px;
+    margin-left : 20px;
+    padding: 20px 0 20px;
+    text-decoration: none;
+}
+
+.top_left {
+	display: inline-block;
+    vertical-align: top;
+    
+}
+
+.top_left img {
+	display: block;
+    position: relative;
+    height: 34px;
+    font-size: 12px;
+    line-height: 34px;
+    padding-left : 100px;
+    padding-bottom: 20px;
+    
+}
+
+	
