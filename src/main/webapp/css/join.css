@@ -59,23 +59,11 @@ div {
     width: 100%;
 }
 
-.phone {
-    display: flex;
-    justify-content: space-between;
-    line-height: 35px;
+.address input{
+    width: 100%;
 }
 
-#phone1 {
-    width: 18%;
-}
 
-#phone2 {
-    width: 30%;
-}
-
-#phone3 {
-    width: 30%;
-}
 
 .auth {
     display: flex;
