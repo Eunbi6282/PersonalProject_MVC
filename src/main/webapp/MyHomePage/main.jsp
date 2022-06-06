@@ -4,17 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="../css/common.css">
 <title>Main Page</title>
   <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">  -->
- <link rel="stylesheet" href="css/laneige01.css">
+ <link rel="stylesheet" href="../css/laneige01.css">
 </head>
 <body>
      <div class="top_right">
-         <a href="join_intro.jsp">
+         <a href="joinForm.jsp">
              <span class="title">회원가입</span>
          </a>
-         <a href="login.jsp" > 
+         <a href="loginForm.jsp" > 
              <span class="title">로그인</span>
          </a>
     </div>
@@ -24,7 +24,7 @@
 		<div class="top_left">
 			<div class="top_left">
 				<a href = "/" >
-						<img class = "cart" src="images/icon_cart.png" alt="장바구니">
+						<img class = "cart" src="../images/icon_cart.png" alt="장바구니">
 				</a>
 			</div>
 		</div>
