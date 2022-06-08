@@ -48,7 +48,7 @@
 		}
 	%>
     <div class="_3aNsjos9K5">
-		<h1 class = "bekkwdip3W"> TTEI</h1>
+		<h1 class = "bekkwdip3W"><a href="main.jsp">TTEI</a></h1>
 		<div class="top_left">
 			<div class="top_left">
 				<a href = "/" >
@@ -74,8 +74,18 @@
             <li><a href="index.html">About Us</a></li>
             <li><a href="index.html">News</a></li>
             <li><a href="index.html">My Account</a></li>
-            <li><a href="index.html">Contacts</a></li>
+            <li><a href="index.html">BOARD</a></li>
         </ul>
     </nav>
+    <aside id="left">
+        <ul>
+            <li><a href="TOP.jsp" target="iframe1">TOP</a></li>
+            <li><a href="./clothing.html" target="iframe1">BOTTOM</a></li>
+            <li><a href="./music.html" target="iframe1">OUTER</a></li>
+            <li><a href="./movie.html" target="iframe1">DRESS</a></li>
+            <li><a href="./computer.html" target="iframe1">SHOES/BAG</a></li>
+            <li><a href="./computer.html" target="iframe1">ACC</a></li>
+        </ul>
+    </aside>
 </body>
 </html>

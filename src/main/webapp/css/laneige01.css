@@ -115,8 +115,8 @@ img {
 
 
 ._3aNsjos9K5 {
-    position: relative;
-    padding: 50px 0 22px;
+    position: relative!important;
+    padding: 50px 0 22px!important;
 }
 .bekkwdip3W {
     text-align: center;

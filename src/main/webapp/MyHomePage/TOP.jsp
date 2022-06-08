@@ -19,25 +19,8 @@
 <body>
 	
 	<jsp:include page="head.jsp" flush="false"/>
-	<% 
-	 	String uid = "";
-	 	uid = (String)session.getAttribute("id");
-	 %>
-	 
-	 <%= uid %> 님 환영합니다.
-	<aside id="left">
-        <h4>카테고리</h4>
-        <ul>
-            <li><a href="TOP.jsp" target="iframe1">TOP</a></li>
-            <li><a href="./clothing.html" target="iframe1">BOTTOM</a></li>
-            <li><a href="./music.html" target="iframe1">OUTER</a></li>
-            <li><a href="./movie.html" target="iframe1">DRESS</a></li>
-            <li><a href="./computer.html" target="iframe1">SHOES/BAG</a></li>
-            <li><a href="./computer.html" target="iframe1">ACC</a></li>
-        </ul>
-    </aside>
 	<div class = "main">
-		  <div class="row mb-2">
+		  <div class="row mb-2" style = "margin-right:100px; height:400px">
 		   <%
                 ProductDAO1 ppDAO1 = new ProductDAO1();
                 ArrayList<ProductDTO> list1 = ppDAO1.getList();
@@ -47,15 +30,16 @@
 		   
 		      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 		        <div class="col p-4 d-flex flex-column position-static">
-		          <strong class="d-inline-block mb-2 text-primary">상품이름 <%=list1.get(i).getPname() %></strong>
-		          <h3 class="mb-0">Featured post</h3>
-		          <div class="mb-1 text-muted">Nov 12</div>
-		          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-		          <a href="#" class="stretched-link">Continue reading</a>
+		          <strong class="d-inline-block mb-2 text-primary"><%=list1.get(i).getCategory() %></strong>
+		          <h3 class="mb-0"><%=list1.get(i).getPname() %></h3>
+		          <div class="mb-1 text-muted"><%=list1.get(i).getPrice() %></div>
+		          <div class="mb-1 text-muted"><strong><%=list1.get(i).getDownprice() %></strong></div>
+		          <p class="card-text mb-auto"><%=list1.get(i).getDescription() %></p>
+		          <a href="#" class="stretched-link">+상세보기</a>
 		        </div>
 		        <div class="col-auto d-none d-lg-block">
-		          <img class="bd-placeholder-img" width="200" height="250" src="./image/product" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-		
+		          <img class="bd-placeholder-img" width="200" height="300px" src="./images/products/<%=list1.get(i).getpImg() %>.jpg" role="img" 
+		          aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
 		        </div>
 		      </div>
 		    </div>

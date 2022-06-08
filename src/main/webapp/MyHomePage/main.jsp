@@ -20,22 +20,7 @@
 	 %>
 	 
 	 <%= uid %> 님 환영합니다.
-	<aside id="left">
-        <h4>카테고리</h4>
-        <ul>
-            <li><a href="TOP.jsp" target="iframe1">TOP</a></li>
-            <li><a href="./clothing.html" target="iframe1">BOTTOM</a></li>
-            <li><a href="./music.html" target="iframe1">OUTER</a></li>
-            <li><a href="./movie.html" target="iframe1">DRESS</a></li>
-            <li><a href="./computer.html" target="iframe1">SHOES/BAG</a></li>
-            <li><a href="./computer.html" target="iframe1">ACC</a></li>
-        </ul>
-    </aside>
-	<section id="main">
-        <article>
-            <iframe name="iframe1" src="computer.html" frameborder="0" width="450" height="300"></iframe>
-        </article>
-    </section>
+	
 	
 </body>
 </html>

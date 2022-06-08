@@ -55,19 +55,19 @@ public class LogonDTO {
 		this.regidate = regidate;
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof LogonDTO) {
-			if (this.pass.equals(((LogonDTO)obj).pass)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	@Override
-	public int hashCode() {
-		return pass.hashCode();
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if(obj instanceof LogonDTO) {
+//			if (this.pass.equals(((LogonDTO)obj).pass)) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+//	
+//	@Override
+//	public int hashCode() {
+//		return pass.hashCode();
+//	}
 	
 }

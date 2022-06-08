@@ -21,10 +21,17 @@
 	
 	<div class="container">
 		<form name="newProduct" action="product_save.jsp" class="form-horizontal" method="post" enctype="multipart/form-data">
+		<input type = "hidden" name = "flag" value = "i"/>
+			<div class="form-group row">
+				<label class="col-sm-2">상품코드</label>
+				<div class="com-sm-3">
+					<input type="text" id="p_id" name="p_id" class="form-control">
+				</div>
+			</div>
 			<div class="form-group row">
 				<label class="col-sm-2">작성자 아이디</label>
 				<div class="com-sm-3">
-					<input type="text" id="wnamw" name="wname" class="form-control">
+					<input type="text" id="wname" name="wname" class="form-control">
 				</div>
 			</div>
 			
