@@ -10,6 +10,8 @@ public class LogonDTO {
 	private String address;
 	private String tel;
 	private Date regidate;
+	
+	
 	public String getId() {
 		return id;
 	}
@@ -53,6 +55,19 @@ public class LogonDTO {
 		this.regidate = regidate;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof LogonDTO) {
+			if (this.pass.equals(((LogonDTO)obj).pass)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
+	@Override
+	public int hashCode() {
+		return pass.hashCode();
+	}
 	
 }

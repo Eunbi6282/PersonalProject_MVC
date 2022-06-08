@@ -7,6 +7,7 @@ import java.util.Base64.Encoder;
 import common.DBConnPool;
 
 public class LogonDAO extends DBConnPool{
+	
 	private static LogonDAO instance = new LogonDAO();
 
 	/// LogonDTO객체를 리턴하는 메서드 
@@ -73,6 +74,51 @@ public class LogonDAO extends DBConnPool{
 			e.printStackTrace();
 			System.out.println("아이디 중복 체크 중 예외발생");
 		}
+		return x;
+	}
+	
+	// 로그인 기능(loginPro.jsp) : 폼에서 넘겨받은 아이디와 패스워드를 DB와 확인
+		// 사용자 인증, Db의 정보를 수정할 때, SB의 정보를 삭제할 때
+		// 사용자 인증(MemberCheck.jsp)에서 사용하는 메서드
+	public int userCheck(String id, String pass) {
+		int x = -1;
+		
+		// 복호화 : 암호화된 Password를 해독된 Password로 변환
+		try {
+			String orgPass = pass;
+			byte[] targetBytes = orgPass.getBytes();
+			
+			// Base64디코딩
+			Decoder decoder = Base64.getDecoder();
+			
+			String sql = "SELECT pass FROM member WHERE id=?";
+		
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) { // 아이디가 존재하면
+				String dbpasswd = rs.getString("pass");
+					// 디코딩 필요
+				byte[] decodedBytes = decoder.decode(dbpasswd);
+				String decodedTxt = new String (decodedBytes); // decode처리됨
+				
+				if(orgPass.equals(decodedTxt)) {
+					x = 1;  // 폼에서 넘겨온 패스워드와 DB에서 가져온 패스워드가 일치할 때 x에 1을 할당
+				} else if(!orgPass.equals(decodedTxt)) {
+					System.out.println(orgPass + "는 존재하지 않는 비밀번호 입니다.");
+					x = 0;
+				} else {
+					System.out.println(id + " 는 존재하지 않는 아이디입니다.");
+					x = -1;  // 패스워드가 일치하지 않을 때
+				}
+			}
+			}catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("인증 실패했습니다.");
+			}finally {
+				instance.close();
+			}
 		return x;
 	}
 	

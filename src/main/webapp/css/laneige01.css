@@ -1,28 +1,5 @@
 @charset "UTF-8";
-body,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul,
-ol,
-li,
-dl,
-dt,
-dd,
-table,
-th,
-td,
-form,
-fieldset,
-legend,
-input,
-textarea,
-button,
-select {
+* {
   margin: 0;
   padding: 0;
 }
@@ -32,58 +9,10 @@ textarea,
 select,
 button,
 table {
-  font-family: Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5em;
 }
-.font_nanumsquare,
-.font_nanumsquare input,
-.font_nanumsquare textarea,
-.font_nanumsquare select,
-.font_nanumsquare button,
-.font_nanumsquare table {
-  font-family: NanumSquare, Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
-}
-.font_nanummyeongjo,
-.font_nanummyeongjo input,
-.font_nanummyeongjo textarea,
-.font_nanummyeongjo select,
-.font_nanummyeongjo button,
-.font_nanummyeongjo table {
-  font-family: NanumMyeongjo, Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
-}
-.font_scdream,
-.font_scdream input,
-.font_scdream textarea,
-.font_scdream select,
-.font_scdream button,
-.font_scdream table {
-  font-family: SCDream, Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
-}
-.font_sfprotext,
-.font_sfprotext input,
-.font_sfprotext textarea,
-.font_sfprotext select,
-.font_sfprotext button,
-.font_sfprotext table {
-  font-family: SFProText, Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
-}
-.font_montserrat,
-.font_montserrat input,
-.font_montserrat textarea,
-.font_montserrat select,
-.font_montserrat button,
-.font_montserrat table {
-  font-family: Montserrat, Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
-}
-.font_playfair,
-.font_playfair input,
-.font_playfair textarea,
-.font_playfair select,
-.font_playfair button,
-.font_playfair table {
-  font-family: PlayfairDisplay, Helvetica, '나눔고딕', 'Nanum Gothic', '나눔스퀘어', 'Nanum Square', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
-}
+
 body {
   position: relative;
   background-color: #ffffff;

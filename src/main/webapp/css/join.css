@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 * {
     margin: 0px;
     box-sizing: border-box;
@@ -17,6 +18,7 @@ html {
 body {
     width: 45%;
     border: 1px solid black;
+    background-color: #f3f1e9;
 }
 
 input{
