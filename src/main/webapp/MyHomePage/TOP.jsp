@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.io.PrintWriter" %>
-<%@ page import = "product.ProductDAO1" %>
+<%@ page import = "product.ProductDAO" %>
 <%@ page import = "product.ProductDTO" %>
 <%@ page import = "common.DBConnPool" %>
 <%@ page import = "java.util.ArrayList" %>
@@ -22,10 +22,12 @@
 	<div class = "main">
 		  <div class="row mb-2" style = "margin-right:100px; height:400px">
 		   <%
-                ProductDAO1 ppDAO1 = new ProductDAO1();
-                ArrayList<ProductDTO> list1 = ppDAO1.getList();
-                for (int i = 0; i < list1.size(); i++) {
-             %>
+		   
+
+		                   ProductDAO ppDAO1 = new ProductDAO();
+		                   ArrayList<ProductDTO> list1 = ppDAO1.getList();
+		                   for (int i = 0; i < list1.size(); i++) {
+		   %>
 		    <div class="col-md-6">
 		   
 		      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -38,8 +40,8 @@
 		          <a href="#" class="stretched-link">+상세보기</a>
 		        </div>
 		        <div class="col-auto d-none d-lg-block">
-		          <img class="bd-placeholder-img" width="200" height="300px" src="./images/products/<%=list1.get(i).getpImg() %>.jpg" role="img" 
-		          aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+		          <img class="bd-placeholder-img" width="200" height="300px" src="../images/products/<%=list1.get(i).getpImg() %>.jpg" role="img" 
+		          aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice">
 		        </div>
 		      </div>
 		    </div>

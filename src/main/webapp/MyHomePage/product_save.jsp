@@ -34,8 +34,9 @@
 	File file = multi.getFile("pImg");
 	 
 	//out.println(wn + " " + cat + " " + pn + " " +sn + "  " + price + " " + dprice + " " + stock + " " + des);
-	 //if (true) return; // 프로그램 멈춤
-	multi.getFile("./images/products");
+	//if (true) return; // 프로그램 멈춤
+	
+	multi.getFile("../images/products");
 	ProductDTO p = new ProductDTO();
 	p.setP_id(pc);
 	p.setCategory(cat);

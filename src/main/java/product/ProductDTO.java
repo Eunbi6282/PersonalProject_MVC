@@ -11,7 +11,7 @@ public class ProductDTO {
 	private String sname;
 	private int price;
 	private int downprice;
-	private Date inputdate;
+	private String inputdate;
 	private int stock;
 	private String description;
 	private String pImg;
@@ -61,10 +61,10 @@ public class ProductDTO {
 	public void setDownprice(int downprice) {
 		this.downprice = downprice;
 	}
-	public Date getInputdate() {
+	public String getInputdate() {
 		return inputdate;
 	}
-	public void setInputdate(Date inputdate) {
+	public void setInputdate(String inputdate) {
 		this.inputdate = inputdate;
 	}
 	public int getStock() {
