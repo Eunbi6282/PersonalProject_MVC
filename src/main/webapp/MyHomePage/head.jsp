@@ -77,15 +77,6 @@
             <li><a href="index.html">BOARD</a></li>
         </ul>
     </nav>
-    <aside id="left">
-        <ul>
-            <li><a href="TOP.jsp" target="iframe1">TOP</a></li>
-            <li><a href="./clothing.html" target="iframe1">BOTTOM</a></li>
-            <li><a href="./music.html" target="iframe1">OUTER</a></li>
-            <li><a href="./movie.html" target="iframe1">DRESS</a></li>
-            <li><a href="./computer.html" target="iframe1">SHOES/BAG</a></li>
-            <li><a href="./computer.html" target="iframe1">ACC</a></li>
-        </ul>
-    </aside>
+    
 </body>
 </html>

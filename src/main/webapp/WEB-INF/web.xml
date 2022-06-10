@@ -50,5 +50,32 @@
 		<filter-name>SetCharEncoding</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- MVCboard 글 목록보기 Controller 매핑 설정-->
+	<servlet>
+		<servlet-name>MVCBoardList</servlet-name>
+		<servlet-class>board.ListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MVCBoardList</servlet-name>
+		<url-pattern>/MyHomePage/board_list.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 페이징 처리를 위한 설정 (변수값 할당) 출력 레코드 수 :10개, 페이지수 : 5-->
+	<context-param>
+		<param-name>POSTS_PER_PAGE</param-name>
+		<param-value> 2</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>PAGES_PER_BLOCK</param-name>
+		<param-value>2</param-value>
+	</context-param>
+	
+	<!-- 첨부 파일의 최대 용량 설정 (100MB)-->
+	<context-param>
+		<param-name>maxPostSize</param-name>
+		<param-value>102400000</param-value>
+	</context-param>
   
 </web-app>
