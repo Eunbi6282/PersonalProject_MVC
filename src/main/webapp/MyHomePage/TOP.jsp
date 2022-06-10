@@ -19,6 +19,18 @@
 <body>
 	
 	<jsp:include page="head.jsp" flush="false"/>
+	<aside id="left">
+        <ul>
+            <li><a href="TOP.jsp" target="iframe1">TOP</a></li>
+            <li><a href="./clothing.html" target="iframe1">BOTTOM</a></li>
+            <li><a href="./music.html" target="iframe1">OUTER</a></li>
+            <li><a href="./movie.html" target="iframe1">DRESS</a></li>
+            <li><a href="./computer.html" target="iframe1">SHOES/BAG</a></li>
+            <li><a href="./computer.html" target="iframe1">ACC</a></li>
+        </ul>
+    </aside>
+	
+	
 	<div class = "main">
 		  <div class="row mb-2" style = "margin-right:100px; height:400px">
 		   <%
@@ -50,5 +62,7 @@
 		    %>
 		  </div>
 	</div>
+	
+	
 </body>
 </html>

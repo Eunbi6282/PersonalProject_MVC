@@ -70,11 +70,11 @@
 
 	<nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="main.jsp">Home</a></li>
             <li><a href="index.html">About Us</a></li>
             <li><a href="index.html">News</a></li>
             <li><a href="index.html">My Account</a></li>
-            <li><a href="index.html">BOARD</a></li>
+            <li><a href="board_list.do">BOARD</a></li>
         </ul>
     </nav>
     

@@ -48,7 +48,7 @@ public class LogonDAO extends DBConnPool{
 			e.printStackTrace();
 			System.out.println("회원정보 DB입력시 예외 발생");
 		}finally {
-			instance.close();
+			//instance.close();
 		}
 	}
 	

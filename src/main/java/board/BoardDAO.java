@@ -8,6 +8,13 @@ import common.DBConnPool;
 
 public class BoardDAO extends DBConnPool{
 	
+	private static BoardDAO instance = new BoardDAO();
+
+	/// LogonDTO객체를 리턴하는 메서드 
+	public static BoardDAO getInstance() {
+		return instance;
+	}
+	
 	public BoardDAO() {
 		super();
 	}
@@ -21,8 +28,8 @@ public class BoardDAO extends DBConnPool{
 			}
 			
 		try {
-			stmt = con.createStatement();
-			rs= stmt.executeQuery(query);
+			psmt = con.prepareStatement(query);
+			rs= psmt.executeQuery(query);
 			rs.next();
 			totalCount = rs.getInt(1);
 					
@@ -30,7 +37,10 @@ public class BoardDAO extends DBConnPool{
 		} catch (Exception e) {
 			System.out.println("게시물 카운트중 예외발생");
 			e.printStackTrace();
+		}finally {
+			instance.close();
 		}
+		
 		return totalCount;
 	}
 	
@@ -77,12 +87,17 @@ public class BoardDAO extends DBConnPool{
 					dto.setPass(rs.getString(10));
 					dto.setVisitcount(rs.getInt(11));
 					
+					
+					
 					board.add(dto); // List의 DB의 rs의 하나의 레코드 값을 dto에 저장하고 
 										// dto를 List에 추가
 				}
 				
 			}catch (Exception e) {
 				e.printStackTrace();
+				System.out.println("리스트오류");
+			}finally {
+				instance.close();
 			}
 			
 			return board;	// board는 DTO객체를 담고 있다. 
@@ -90,19 +105,19 @@ public class BoardDAO extends DBConnPool{
 		
 		// 목록 검색 (Select ) : 주어진 일련번호에 해당하는 값을 DTO에 담아 반환(한 페이지 read)
 				//ViewController에서 요청 처리/ idx값으로 select하기
-			public BoardDTO selectView(String id) {
+			public BoardDTO selectView(String num) {
 				BoardDTO dto = new BoardDTO();	
-				String query = "SELECT * FROM board WHERE id =?";
+				String query = "SELECT * FROM board WHERE num =?";
 				
 				try {
 					psmt = con.prepareStatement(query);
-					psmt.setString(1, id);
+					psmt.setString(1, num);
 					rs = psmt.executeQuery();
 					
 					if(rs.next()) {
 						//rs(select 결과물 들어있음) set이용해서 값 주입
 						dto.setNum(rs.getString(1));
-						dto.setId(rs.getString(2));	// 1번컬럼
+						dto.setId(rs.getString(2)); //rs의 index1번의 값을 setter통해 주입
 						dto.setName(rs.getString(3));
 						dto.setTitle(rs.getString(4));
 						dto.setContent(rs.getString(5));
@@ -116,23 +131,27 @@ public class BoardDAO extends DBConnPool{
 				}catch (Exception e) {
 					System.out.println("게시물 상세정보 출력시 예외 발생");
 					e.printStackTrace();
+				}finally {
+					instance.close();
 				}
 				return dto;
 			}
 			
 			// 게시물 조회수 증가 메서드 
-			public void updateVisitCount(String id) {
+			public void updateVisitCount(String num) {
 				String query = "UPDATE board SET "
 						+ " visitcount = visitcount + 1 "
-						+ " WHERE id = ?";
+						+ " WHERE num = ?";
 				
 				try {
 					psmt = con.prepareStatement(query);
-					psmt.setString(1, id);
+					psmt.setString(1, num);
 					rs= psmt.executeQuery();
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println("게시물 조회수 증가시 예외 발생");
+				}finally {
+					instance.close();
 				}
 			}
 		

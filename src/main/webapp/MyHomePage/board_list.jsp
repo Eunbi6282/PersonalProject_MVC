@@ -5,18 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Board</title>
 	<style>
 		#boardForm {
 		    font-family: 'Marcellus','Noto Sans KR',Arial,Helvetica,san-serif;
 		    font-size: 14px;
 		    
 		}
-		
-		
-	
-	
-	
 	</style>
 
 
@@ -45,6 +40,7 @@
 	<table border = "1" width = "90%">
 		<tr>
 			<th width = "10%"> 번호 </th>
+			<th width = "10%"> 아이디 </th>
 			<th width = "15%"> 작성자 </th>
 			<th width = "*"> 제목 </th>
 			<th width = "10%"> 조회수</th>
@@ -67,11 +63,14 @@
 						<td>	<!-- 번호 출력 -->
 							${map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index)}
 						</td>
-						<td align = "left" > <!-- 링크 걸면서 제목 출력 -->
-							<a href = "../MyHomePage/view.do?idx=${row.id }"> ${row.title }</a>
+						<td>
+							${row.id }
 						</td>
 						<td>	<!-- 작성자 -->
 							${row.name }
+						</td>
+						<td align = "left" > <!-- 링크 걸면서 제목 출력 -->
+							<a href = "../MyHomePage/board_view.do?num=${row.num }"> ${row.title }</a>
 						</td>
 						<td> 	<!-- 조회수 -->
 							${row.visitcount}
@@ -81,7 +80,7 @@
 						</td>
 						<td>	<!-- 첨부파일 -->
 							<c:if test ="${not empty row.ofile}">
-								<a href ="../MyHomePage/download.do?ofile=${row.ofile}&sfile=${row.sfile}&idx =${row.idx}"> [Down]</a>
+								<a href ="../MyHomePage/download.do?ofile=${row.ofile}&sfile=${row.sfile}&idx =${row.num}"> [Down]</a>
 							</c:if>
 						</td>
 					</tr>
@@ -102,5 +101,7 @@
         </tr>
     </table>
   </div>
+  
+  
 </body>
 </html>

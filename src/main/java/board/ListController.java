@@ -19,7 +19,7 @@ public class ListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 1. DAO 객체 생성
-		BoardDAO dao = new BoardDAO();  //객체 만드는 순간 연결성공
+			BoardDAO dao = new BoardDAO();  //객체 만드는 순간 연결성공
 		
 		// 2. 뷰에 전달할 매개변수 저장용 맵 생성 (Key, Value)
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -70,7 +70,7 @@ public class ListController extends HttpServlet{
 			dao.close(); //DB연결 닫기(DBConnPool을 상속하고 있음
 			
 			// 뷰페이지에 전달할 매개변수들을 추가
-			String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../board/board_list.do"); // 바로가기 HTML문자열
+			String pagingImg = BoardPage.pagingStr(totalCount, pageSize, blockPage, pageNum, "../MyHomePage/board_list.do"); // 바로가기 HTML문자열
 			
 			// 뷰페이지로 변수의 값을 전달
 			map.put("pagingImg", pagingImg);
@@ -81,7 +81,7 @@ public class ListController extends HttpServlet{
 			// 뷰페이지로 데이터 전달, request 영역에 전달할 데이터를 저장 후 board_list.jsp(뷰페이지)로 포워드
 			req.setAttribute("boardLists", boardLists); // ("변수값", 값) //DB에서 Select한 결과값
 			req.setAttribute("map", map);
-			req.getRequestDispatcher("../MyHomePage/board_list.jsp").forward(req, resp);	
+			req.getRequestDispatcher("/MyHomePage/board_list.jsp").forward(req, resp);	
 		
 	}
 

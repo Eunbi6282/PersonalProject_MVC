@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+<web-app>
   <display-name>MyHomePage</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -53,12 +53,32 @@
 	
 	<!-- MVCboard 글 목록보기 Controller 매핑 설정-->
 	<servlet>
-		<servlet-name>MVCBoardList</servlet-name>
+		<servlet-name>BoardList</servlet-name>
 		<servlet-class>board.ListController</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>MVCBoardList</servlet-name>
+		<servlet-name>BoardList</servlet-name>
 		<url-pattern>/MyHomePage/board_list.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- MVCboard 글 상세보기 Controller 매핑 설정-->
+	<servlet>
+		<servlet-name>BoardView</servlet-name>
+		<servlet-class>board.ViewController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardView</servlet-name>
+		<url-pattern>/MyHomePage/board_view.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- MVCboard 글쓰기 Controller 매핑 설정-->
+	<servlet>
+		<servlet-name>BoardWrite</servlet-name>
+		<servlet-class>board.WriteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardWrite</servlet-name>
+		<url-pattern>/MyHomePage/board_write.do</url-pattern>
 	</servlet-mapping>
 	
 	<!-- 페이징 처리를 위한 설정 (변수값 할당) 출력 레코드 수 :10개, 페이지수 : 5-->
