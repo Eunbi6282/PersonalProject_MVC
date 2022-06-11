@@ -62,7 +62,8 @@ public class BoardDAO extends DBConnPool{
 			query += "		ORDER BY num DESC"
 					+ " ) Tb "
 					+ ") " 
-					+" WHERE rNUM BETWEEN ? AND ?";
+					+" WHERE rNUM BETWEEN ? AND ?"
+					+ " ORDER BY postdate DESC";
 			
 			System.out.println(query);  //콘솔에 전체 쿼리 출력
 			
@@ -225,10 +226,46 @@ public class BoardDAO extends DBConnPool{
 		
 		
 		// Update
-		
+		public int updatePost (BoardDTO dto) {
+			int result = 0;
+			
+			try {
+				String query = "UPDATE board SET title =?, name=?, content=?, ofile =?, sfile=? WHERE num=? and pass=?"; //num와 pass가 다 맞을 떄 수정
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, dto.getTitle());
+				psmt.setString(2, dto.getName());
+				psmt.setString(3, dto.getOfile());
+				psmt.setString(4, dto.getContent());
+				psmt.setString(5, dto.getSfile());
+				psmt.setString(6, dto.getNum());
+				psmt.setString(7, dto.getPass());
+				
+				result = psmt.executeUpdate();  // update성공시 result변수의 값이  >0
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("게시물 Update시 예외발생");
+			}
+			return result;
+		}
 		
 		// Delete
+		public int deletePost (String num) {
+			int result = 0;
 			
+			try {
+				String query = "DELETE board WHERE num = ?";
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, num);
+				
+				result = psmt.executeUpdate();	//result가 0보다 크면 삭제 성공, result가 0이면 삭제 실패
+						
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("게시물 Delete시 예외발생");
+			}
+			return result;
+		}
 		
 	
 }

@@ -1,6 +1,7 @@
 package board;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fileupload.FileUtil;
 import utils.JSFunction;
 
 public class PassController extends HttpServlet{
@@ -28,6 +30,8 @@ public class PassController extends HttpServlet{
 		String mode = req.getParameter("mode");
 		String pass = req.getParameter("pass");
 		
+		String sfile = req.getParameter("sfile");  // 삭제시 파일도 같이 삭제
+		
 		// 비밀번호 확인 (DAO에 작업)
 		BoardDAO dao = new BoardDAO();
 		boolean confirmed = dao.confirmPass(pass, num);
@@ -43,8 +47,12 @@ public class PassController extends HttpServlet{
 				dao = new BoardDAO();  //dao객체 새로 만듬
 				
 				//dao delete객체 만들기
-				
+				BoardDTO dto = dao.selectView(num);
+				int result = dao.deletePost(num);  //게시물 삭제
+				dao.close();
 				// 게시물 삭제시 첨부파일도 같이 삭제 
+				FileUtil.deleteFile(req, "/uploads", sfile);
+				
 				
 				// 삭제 이후 페이지 이동 (js)
 				JSFunction.alertLocation(resp, "삭제되었습니다", "../MyHomePage/board_list.do");
