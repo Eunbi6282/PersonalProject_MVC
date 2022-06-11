@@ -10,33 +10,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 
-//ÆÄÀÏ ¾÷·Îµå Ã³¸®ÇÏ´Â Å¬·¡½º 
+//íŒŒì¼ ì—…ë¡œë“œ ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
 
 public class FileUtil {
 	
-	//ÆÄÀÏ ¾÷·Îµå (multipart/form-data ¿äÃ») Ã³¸®
-	//MultipartRequest  : cos.jar ¶óÀÌºê·¯¸®¿¡ Á¸Àç, ÆÄÀÏ¾÷·Îµå Ã³¸® 
+	//íŒŒì¼ ì—…ë¡œë“œ (multipart/form-data ìš”ì²­) ì²˜ë¦¬
+	//MultipartRequest  : cos.jar ë¼ì´ë¸ŒëŸ¬ë¦¬ì— ì¡´ì¬, íŒŒì¼ì—…ë¡œë“œ ì²˜ë¦¬ 
 	
 	
 	public static MultipartRequest uploadFile (HttpServletRequest req, 
 			String saveDirectory, int maxPostSize) {
 		
 		try {
-			//¾÷·Îµå ¼º°ø 
+			//ì—…ë¡œë“œ ì„±ê³µ 
 			return new MultipartRequest(req, saveDirectory, maxPostSize, "UTF-8"); 
 			
 		}catch (Exception e) {
-			//¾÷·Îµå ½ÇÆĞ
+			//ì—…ë¡œë“œ ì‹¤íŒ¨
 			e.printStackTrace();
-			System.out.println("ÆÄÀÏ ¾÷·Îµå ½ÇÆĞ");
+			System.out.println("íŒŒì¼ ì—…ë¡œë“œ ì‹¤íŒ¨");
 			return null ; 
 		}		
 	}
 	
-	//±Û »èÁ¦½Ã¿¡ ÆÄÀÏ ¾÷·ÎµåµÈ Æú´õÀÇ ÆÄÀÏµµ ÇÔ²² »èÁ¦ 
+	//ê¸€ ì‚­ì œì‹œì— íŒŒì¼ ì—…ë¡œë“œëœ í´ë”ì˜ íŒŒì¼ë„ í•¨ê»˜ ì‚­ì œ  
 	public static void deleteFile (HttpServletRequest req, 
 			String directory, String filename) {
-		//¸Å°³º¯¼ö directory ¿¡ ÀÎÀÚÀÇ ¼­¹öÀÇ ¾÷·Îµå Æú´õÀÇ Àı´ë°æ·Î 
+		//ë§¤ê°œë³€ìˆ˜ directory ì— ì¸ìì˜ ì„œë²„ì˜ ì—…ë¡œë“œ í´ë”ì˜ ì ˆëŒ€ê²½ë¡œ 
 		String sDirectory = req.getServletContext().getRealPath(directory); 
 		File file = new File (sDirectory + File.separator + filename); 
 		if (file.exists()) {
@@ -44,16 +44,16 @@ public class FileUtil {
 		}
 	}
 	
-	// ¸í½ÃÇÑ ÆÄÀÏÀ» Ã£¾Æ ´Ù¿î·ÎµåÇÕ´Ï´Ù.
+	// ëª…ì‹œí•œ íŒŒì¼ì„ ì°¾ì•„ ë‹¤ìš´ë¡œë“œí•©ë‹ˆë‹¤.
     public static void download(HttpServletRequest req, HttpServletResponse resp,
             String directory, String sfileName, String ofileName) {
         String sDirectory = req.getServletContext().getRealPath(directory);
         try {
-            // ÆÄÀÏÀ» Ã£¾Æ ÀÔ·Â ½ºÆ®¸² »ı¼º
+        	// íŒŒì¼ì„ ì°¾ì•„ ì…ë ¥ ìŠ¤íŠ¸ë¦¼ ìƒì„±
             File file = new File(sDirectory, sfileName);
             InputStream iStream = new FileInputStream(file);
 
-            // ÇÑ±Û ÆÄÀÏ¸í ±úÁü ¹æÁö
+         // í•œê¸€ íŒŒì¼ëª… ê¹¨ì§ ë°©ì§€
             String client = req.getHeader("User-Agent");
             if (client.indexOf("WOW64") == -1) {
                 ofileName = new String(ofileName.getBytes("UTF-8"), "ISO-8859-1");
@@ -62,39 +62,33 @@ public class FileUtil {
                 ofileName = new String(ofileName.getBytes("KSC5601"), "ISO-8859-1");
             }
 
-            // ÆÄÀÏ ´Ù¿î·Îµå¿ë ÀÀ´ä Çì´õ ¼³Á¤
+            // íŒŒì¼ ë‹¤ìš´ë¡œë“œìš© ì‘ë‹µ í—¤ë” ì„¤ì •
             resp.reset();
             resp.setContentType("application/octet-stream");
             resp.setHeader("Content-Disposition",
                            "attachment; filename=\"" + ofileName + "\"");
             resp.setHeader("Content-Length", "" + file.length() );
 
-            //out.clear();  // Ãâ·Â ½ºÆ®¸² ÃÊ±âÈ­
+            //out.clear();  // ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ ì´ˆê¸°í™”
 
-            // response ³»Àå °´Ã¼·ÎºÎÅÍ »õ·Î¿î Ãâ·Â ½ºÆ®¸² »ı¼º
+            // response ë‚´ì¥ ê°ì²´ë¡œë¶€í„° ìƒˆë¡œìš´ ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ ìƒì„±
             OutputStream oStream = resp.getOutputStream();
 
-            // Ãâ·Â ½ºÆ®¸²¿¡ ÆÄÀÏ ³»¿ë Ãâ·Â
+            // ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ì— íŒŒì¼ ë‚´ìš© ì¶œë ¥
             byte b[] = new byte[(int)file.length()];
             int readBuffer = 0;
             while ( (readBuffer = iStream.read(b)) > 0 ) {
                 oStream.write(b, 0, readBuffer);
             }
 
-            // ÀÔ/Ãâ·Â ½ºÆ®¸² ´İÀ½
+            // ì…/ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ ë‹«ìŒ
             iStream.close();
             oStream.close();
         }
         catch (Exception e) {
-            System.out.println("ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+            System.out.println("íŒŒì¼ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             e.printStackTrace();
         }
      
     }
-	
-	
-	
-	
-	
-
 }

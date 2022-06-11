@@ -80,7 +80,7 @@
 						</td>
 						<td>	<!-- 첨부파일 -->
 							<c:if test ="${not empty row.ofile}">
-								<a href ="../MyHomePage/download.do?ofile=${row.ofile}&sfile=${row.sfile}&idx =${row.num}"> [Down]</a>
+								<a href ="../MyHomePage/download.do?ofile=${row.ofile}&sfile=${row.sfile}&num=${row.num}"> [Down]</a>
 							</c:if>
 						</td>
 					</tr>
@@ -96,7 +96,7 @@
                 ${ map.pagingImg }
             </td>
             <td width="100"><button type="button"
-                onclick="location.href='../MyHomePaged/write.do';">글쓰기</button>
+                onclick="location.href='../MyHomePage/board_write.do';">글쓰기</button>
             </td>
         </tr>
     </table>

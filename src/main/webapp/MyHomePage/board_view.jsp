@@ -20,7 +20,7 @@
 	
 	<!--  게시글 정보 출력 -->
 	<tr>
-		<td>번호</td> <td> ${dto.num } </td>
+		<td>번호</td> <td> ${dto.num} </td>
 		<td>작성자</td><td> ${dto.name} </td>
 	</tr>
 	
@@ -39,7 +39,7 @@
 		<td>
 			<c:if test="${not empty dto.ofile }"> <!-- 첨부파일이 존재할 때 -->
 				${dto.ofile }
-				<a href = "../mvc_board/download.do?ofile=${dto.ofile}&sfile=${dto.sfile}&idx=${dto.idx}">
+				<a href = "../MyHomePage/download.do?ofile=${dto.ofile}&sfile=${dto.sfile}&num=${dto.num}">
 					[다운로드]
 				</a>
 			</c:if>
@@ -55,8 +55,8 @@
 	<tr> <!-- td 4개 합침 -->
 		<td colspan = "4" align = "center">
 		<!-- param.idx => 넘어오는 idx값 -->
-			<button type = "button" onclick = "location.href='../MyHomePage/pass.do?mode=edit&idx=${param.idx}';"> 수정하기</button>
-			<button type = "button" onclick = "location.href='../MyHomePage/pass.do?mode=delete&idx=${param.idx}';"> 삭제하기 </button>
+			<button type = "button" onclick = "location.href='../MyHomePage/pass.do?mode=edit&num=${param.num}';"> 수정하기</button>
+			<button type = "button" onclick = "location.href='../MyHomePage/pass.do?mode=delete&num=${param.num}';"> 삭제하기 </button>
 			<button type = "button" onclick = "location.href='../MyHomePage/board_list.do';"> 목록 바로가기</button>
 		</td>
 	</tr>

@@ -117,7 +117,7 @@ public class LogonDAO extends DBConnPool{
 				e.printStackTrace();
 				System.out.println("인증 실패했습니다.");
 			}finally {
-				instance.close();
+				//instance.close();
 			}
 		return x;
 	}

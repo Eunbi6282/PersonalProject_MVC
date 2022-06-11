@@ -59,7 +59,7 @@ public class BoardDAO extends DBConnPool{
 					+ " LIKE '%" + map.get("searchWord") + "%' ";
 			}
 			
-			query += "		ORDER BY id DESC"
+			query += "		ORDER BY num DESC"
 					+ " ) Tb "
 					+ ") " 
 					+" WHERE rNUM BETWEEN ? AND ?";
@@ -137,23 +137,98 @@ public class BoardDAO extends DBConnPool{
 				return dto;
 			}
 			
-			// 게시물 조회수 증가 메서드 
-			public void updateVisitCount(String num) {
-				String query = "UPDATE board SET "
-						+ " visitcount = visitcount + 1 "
-						+ " WHERE num = ?";
-				
-				try {
-					psmt = con.prepareStatement(query);
-					psmt.setString(1, num);
-					rs= psmt.executeQuery();
-				} catch (Exception e) {
-					e.printStackTrace();
-					System.out.println("게시물 조회수 증가시 예외 발생");
-				}finally {
-					instance.close();
-				}
+		// 게시물 조회수 증가 메서드 
+		public void updateVisitCount(String num) {
+			String query = "UPDATE board SET "
+					+ " visitcount = visitcount + 1 "
+					+ " WHERE num = ?";
+			
+			try {
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, num);
+				rs= psmt.executeQuery();
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("게시물 조회수 증가시 예외 발생");
+			}finally {
+				instance.close();
 			}
+		}
+	
+		
+		
+		// 데이터 삽입(Insert)
+		public int insertWrite(BoardDTO dto) { // 폼에서 넘겨받은 값들을 dto에 저장
+			int result = 0;
+			
+			try {
+				String query = "INSERT INTO board("
+						+ " num, id ,name, title, content, ofile, sfile, pass) " 
+						+ " VALUES( " 
+						+ " seq_board_peb.nextval, ?, ?, ?, ?, ?, ? ,?)";
+				
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, dto.getId());
+				psmt.setString(2, dto.getName());
+				psmt.setString(3, dto.getTitle());
+				psmt.setString(4, dto.getContent());
+				psmt.setString(5, dto.getOfile());
+				psmt.setString(6, dto.getSfile());
+				psmt.setString(7, dto.getPass());
+				
+				result = psmt.executeUpdate();  //Insert성공일 때 result > 0 // DB에 값을 저장
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("값 insert시 예외발생");
+			}
+			
+			return result;  // 성공일 떄 result >0, 실패시 :0 
+		}
+		
+		// 다운로드 횟수 증가 메서드
+		public void downCountPlus (String num) {
+			String query = "UPDATE board SET downcount = downcount + 1"
+					+ " WHERE num = ?";
+			try {
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, num);
+				psmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("downloadCount 처리중 예외 발생");
+			}
+		}
+		
+		// 비밀번호 확인 메서드 (입력한 비밀번호가 DB의 값과 일치하는지 확인)
+		public boolean confirmPass (String pass, String num) {
+			boolean isCorr = true;
+			try {
+				// count(*) = 1 레코드 개수, 레코드가 존재하면 아이디와 패스워드가 일치하는 경우이다.
+				// count(*) = 0 레코드가 존재하지 않음.
+				
+				String query = "SELECT COUNT(*) FROM board WHERE pass = ? and num = ?";
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, pass);
+				psmt.setString(2, num);
+				rs = psmt.executeQuery();
+				
+				rs.next();  // 레코드의 첫번때에 커서를 위치 시켜라
+				if (rs.getInt(1) == 0) {  // index방번호의 1번방의 값이 0이면 false
+					isCorr = false;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("게시판 비밀번호 검증 중 예외발생");
+			}
+			return isCorr;
+		}
+		
+		
+		// Update
+		
+		
+		// Delete
+			
 		
 	
 }
