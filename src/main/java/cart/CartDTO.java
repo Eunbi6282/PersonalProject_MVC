@@ -6,13 +6,36 @@ public class CartDTO {
 	private String name;
 	private String p_id;
 	private String pname;
+	private int cart_price;
+	private int price;
+	private int downprice;
 	private int money;
 	private int amount;
 	
 	
 	//Getter Setter
+	
+	
 	public String getName() {
 		return name;
+	}
+	public int getCart_price() {
+		return cart_price;
+	}
+	public void setCart_price(int cart_price) {
+		this.cart_price = cart_price;
+	}
+	public int getDownprice() {
+		return downprice;
+	}
+	public void setDownprice(int downprice) {
+		this.downprice = downprice;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public void setName(String name) {
 		this.name = name;
