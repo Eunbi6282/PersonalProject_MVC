@@ -8,7 +8,7 @@
 <%
 
 
-	String fileurl = application.getRealPath("./images/products");
+	String fileurl = application.getRealPath("/products");
 	String saveFolder = "./images/products";
 	ServletContext context = getServletContext();
 	String realFolder = context.getRealPath(saveFolder);

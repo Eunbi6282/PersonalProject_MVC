@@ -57,12 +57,12 @@
 	
 	%>
 
-	<form name = "writeForm" method = "post" enctype = "multipart/form-data" action = "../MyHomePage/board_write.do" onsubmit = "return validateForm(this)">
+	<form name = "writeForm" method = "post" enctype = "multipart/form-data" action = "../MyHomePage/board_write.do" onsubmit = "return validateForm(this);">
 		<table border = "1" width = "80%">
 			<tr>
 				<td> 작성자 : </td>
 				<td>
-					<input tyoe = "text" name = "name" style = "width :150px;">
+					<input type = "text" name = "name" style = "width :150px;">
 				</td>
 			</tr>
 			<tr>

@@ -49,7 +49,7 @@
 		          <div class="mb-1 text-muted"><%=list1.get(i).getPrice() %></div>
 		          <div class="mb-1 text-muted"><strong><%=list1.get(i).getDownprice() %></strong></div>
 		          <p class="card-text mb-auto"><%=list1.get(i).getDescription() %></p>
-		          <a href="#" class="stretched-link">+상세보기</a>
+		          <a href="#" class="stretched-link">+장바구니</a>
 		        </div>
 		        <div class="col-auto d-none d-lg-block">
 		          <img class="bd-placeholder-img" width="200" height="300px" src="../images/products/<%=list1.get(i).getpImg() %>.jpg" role="img" 

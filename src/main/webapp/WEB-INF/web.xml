@@ -101,6 +101,16 @@
 		<url-pattern>/MyHomePage/pass.do</url-pattern>
 	</servlet-mapping>
 	
+	<!-- MVCboard 글수정 Controller 매핑 설정-->
+	<servlet>
+		<servlet-name>BoardEdit</servlet-name>
+		<servlet-class>board.EditController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardEdit</servlet-name>
+		<url-pattern>/MyHomePage/board_edit.do</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 페이징 처리를 위한 설정 (변수값 할당) 출력 레코드 수 :10개, 페이지수 : 5-->
 	<context-param>
 		<param-name>POSTS_PER_PAGE</param-name>

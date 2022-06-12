@@ -72,17 +72,17 @@ public class WriteController extends HttpServlet{
 				
 				// 확장자만 잘라서 저장
 				String ext = fileName.substring(fileName.lastIndexOf("."));
-					System.out.println("ext : " + ext);
+					//System.out.println("ext : " + ext);
 					
 				// 서버에 저장할 파일이름 생성
 				String newFileName = now + ext;
-					System.out.println(newFileName);
+					//System.out.println(newFileName);
 					
 				// 파일 명 변경
 				File oldFile = new File(saveDirectory + File.separator + fileName);
 				File newFile = new File(saveDirectory + File.separator + newFileName);
-					System.out.println("oldFile : " + oldFile);
-					System.out.println("newFile : " + newFile);
+					//System.out.println("oldFile : " + oldFile);
+					//System.out.println("newFile : " + newFile);
 				oldFile.renameTo(newFile);
 				
 				// DTO 에 Setter 주입( 조건 : 파일을 업로드한 경우에만)

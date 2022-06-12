@@ -37,7 +37,7 @@
 				<td colspan = "2" align = "center">
 					<button type = "submit">검증하기</button>
 					<button type = "reset">Reset</button>
-					<button type = "button" onclick = "location href = '../MyHomePage/board_list.do';">목록</button>
+					<button type = "button" onclick = "location.href = '../MyHomePage/board_list.do';">목록</button>
 				</td>
 			</tr>
 		</table>
