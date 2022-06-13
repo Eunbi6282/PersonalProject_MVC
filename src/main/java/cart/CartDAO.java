@@ -52,7 +52,8 @@ public class CartDAO extends DBConnPool{
 	public ArrayList<CartDTO> listCart (String id) {
 		ArrayList<CartDTO> cartlist = new ArrayList<CartDTO>();
 		try {
-			String query = "SELECT cart_id, p.p_id, c.id, name, pname, amount, price, downprice, cart_price, (price*amount) money"
+			String query = "SELECT cart_id, p.p_id, c.id, name, pname, amount, price, downprice, "
+					+ " CASE WHEN p.downprice <> 0 and p.price >= p.downprice THEN p.downprice ELSE p.price END AS cart_price, (cart_price*amount) as money"
 					+ " FROM member m, cart c, product p"
 					+ " WHERE m.id=c.id and c.p_id=p.p_id and c.id=? order by cart_id";
 			
@@ -60,6 +61,7 @@ public class CartDAO extends DBConnPool{
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
 			System.out.println(query);
+			
 			
 			while(rs.next()) {
 				CartDTO dto = new CartDTO();
@@ -71,13 +73,20 @@ public class CartDAO extends DBConnPool{
 				dto.setAmount(rs.getInt("amount"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setDownprice(rs.getInt("downprice"));
-				if (!(dto.getDownprice()==0) && dto.getDownprice() <= dto.getPrice()) {
-					dto.setCart_price(rs.getInt("downprice")); // 할인가가 존재하면 장바구니 안의 가격을 할인가로 
-				} else {
-					dto.setCart_price(rs.getInt("price"));
-				}
-				dto.setMoney(rs.getInt("money"));
+				dto.setCart_price(rs.getInt(9));
+//				if (dto.getDownprice()!=0 && dto.getPrice() > dto.getDownprice()) {
+//					dto.setCart_price(rs.getInt("downprice")); // 할인가가 존재하면 장바구니 안의 가격을 할인가로 
+//				} else {
+//					dto.setCart_price(rs.getInt("price"));
+//				}
+//				
+				dto.setMoney(rs.getInt("amount") * rs.getInt(9));
 				
+				System.out.println(rs.getInt(1));
+				System.out.println(dto.getDownprice());
+				System.out.println(dto.getPrice());
+				System.out.println(rs.getInt(9));
+				System.out.println(rs.getInt(10));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

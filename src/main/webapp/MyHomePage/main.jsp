@@ -22,7 +22,7 @@
 	 <%= uid %> 님 환영합니다.
 	<aside id="left">
         <ul>
-            <li><a href="TOP.jsp" target="iframe1">TOP</a></li>
+            <li><a href="top_view.jsp" target="iframe1">TOP</a></li>
             <li><a href="./clothing.html" target="iframe1">BOTTOM</a></li>
             <li><a href="./music.html" target="iframe1">OUTER</a></li>
             <li><a href="./movie.html" target="iframe1">DRESS</a></li>

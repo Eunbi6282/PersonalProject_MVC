@@ -114,14 +114,6 @@
 	
 	
 	<!-- 장바구니 CartController 매핑 설정-->
-	<servlet>
-		<servlet-name>cart</servlet-name>
-		<servlet-class>cart.CartController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>cart</servlet-name>
-		<url-pattern>/MyHomePage/cart_list.do</url-pattern>
-	</servlet-mapping>
 	
 	
 	<!-- 페이징 처리를 위한 설정 (변수값 할당) 출력 레코드 수 :10개, 페이지수 : 5-->

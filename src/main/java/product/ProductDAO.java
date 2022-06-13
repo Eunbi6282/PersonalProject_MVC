@@ -75,6 +75,7 @@ public class ProductDAO {
 				pp.setpImg(rs.getString(11));
 				pList.add(pp);
 			}
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("리스트 오류");
