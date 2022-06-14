@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import cart.CartDTO;
+import logon.LogonDTO;
 import product.ProductDTO;
 
 public class ProductDAO {
@@ -106,6 +108,43 @@ public class ProductDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+	
+	// select 장바구니 연결
+	public ArrayList<ProductDTO> productView (String p_id) {
+		ArrayList<ProductDTO> productview = new ArrayList<ProductDTO>();
+		
+		try {
+			String query = "SELECT p.p_id, c.id, pname, category, sname, price, downprice, description, pImg, amount"
+					+ " FROM product p, cart c , member m"
+					+ " WHERE p.p_id = c.p_id and c.id = m.id and p.p_id = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, p_id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setP_id(rs.getString("p_id"));
+				dto.setId(rs.getString("id"));
+				dto.setCategory("category");
+				dto.setPname(rs.getString("pname"));
+				dto.setSname(rs.getString("sname"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setDownprice(rs.getInt("downprice"));
+				dto.setDescription(rs.getString("description"));
+				dto.setpImg(rs.getString("pImg"));
+				dto.setAmount(rs.getInt("amount"));
+				
+				//System.out.println(rs.getInt("amount"));
+				//System.out.println(rs.getString("pImg"));
+				
+				productview.add(dto);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("productView 예외발생");
+		}
+		return productview;
 	}
 	
 	

@@ -3,6 +3,8 @@ package cart;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.event.CaretListener;
+
 import common.DBConnPool;
 
 public class CartDAO extends DBConnPool{
@@ -60,7 +62,7 @@ public class CartDAO extends DBConnPool{
 			psmt = con.prepareStatement(query);
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
-			System.out.println(query);
+			//System.out.println(query);
 			
 			
 			while(rs.next()) {
@@ -80,19 +82,14 @@ public class CartDAO extends DBConnPool{
 //					dto.setCart_price(rs.getInt("price"));
 //				}
 //				
-				dto.setMoney(rs.getInt("amount") * rs.getInt(9));
-				
-				System.out.println(rs.getInt(1));
-				System.out.println(dto.getDownprice());
-				System.out.println(dto.getPrice());
-				System.out.println(rs.getInt(9));
-				System.out.println(rs.getInt(10));
+				dto.setMoney(rs.getInt("money"));
+				cartlist.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("장바구니list중 예외발생");
 		}finally {
-			instance.close();
+			//instance.close();
 		}
 		return cartlist;
 	}

@@ -40,7 +40,7 @@
 	         <a href = "logout.jsp">
 	             <span class="title" id = "logout">로그아웃</span>
 	         </a>
-	         <a href="modify.jsp">
+	         <a href="modify_chPass.jsp">
 	             <span class="title">회원정보수정</span>
 	         </a>  
 	    </div>
@@ -51,7 +51,7 @@
 		<h1 class = "bekkwdip3W"><a href="main.jsp">TTEI</a></h1>
 		<div class="top_left">
 			<div class="top_left">
-				<a href = "/" >
+				<a href = "cart_list.jsp" >
 					<img class = "cart" src="../images/icon_cart.png" alt="장바구니">
 				</a>
 			</div>

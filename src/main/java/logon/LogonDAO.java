@@ -1,5 +1,6 @@
 package logon;
 
+import java.sql.PreparedStatement;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
@@ -48,7 +49,7 @@ public class LogonDAO extends DBConnPool{
 			e.printStackTrace();
 			System.out.println("회원정보 DB입력시 예외 발생");
 		}finally {
-			//instance.close();
+			instance.close();
 		}
 	}
 	
@@ -82,7 +83,9 @@ public class LogonDAO extends DBConnPool{
 		// 사용자 인증(MemberCheck.jsp)에서 사용하는 메서드
 	public int userCheck(String id, String pass) {
 		int x = -1;
-		
+		System.out.println("로그인 메소드 호출 성공");
+		System.out.println(id); 
+		System.out.println(pass); 
 		// 복호화 : 암호화된 Password를 해독된 Password로 변환
 		try {
 			String orgPass = pass;
@@ -105,6 +108,8 @@ public class LogonDAO extends DBConnPool{
 				
 				if(orgPass.equals(decodedTxt)) {
 					x = 1;  // 폼에서 넘겨온 패스워드와 DB에서 가져온 패스워드가 일치할 때 x에 1을 할당
+					
+					System.out.println("인증 성공");
 				} else if(!orgPass.equals(decodedTxt)) {
 					System.out.println(orgPass + "는 존재하지 않는 비밀번호 입니다.");
 					x = 0;
@@ -112,6 +117,8 @@ public class LogonDAO extends DBConnPool{
 					System.out.println(id + " 는 존재하지 않는 아이디입니다.");
 					x = -1;  // 패스워드가 일치하지 않을 때
 				}
+				
+				System.out.println(x);
 			}
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -122,7 +129,130 @@ public class LogonDAO extends DBConnPool{
 		return x;
 	}
 	
+	//현재의 시간을 가져오는 함수
+	   public String getDate() {
+	       String SQL="SELECT to_char(sysdate,'YYYY-MM-DD') FROM member";
+	      
+	      try {
+	         PreparedStatement pstmt = con.prepareStatement(SQL);
+	         rs = pstmt.executeQuery();
+	         if (rs.next()) {
+	            return rs.getString(1);
+	         }
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      
+	      return "";// 데이터베이스 오류
+	   }
+	   
+	   
 	
+	// 회원정보 DB에서 가져와서 수정(modifyForm.jsp): DB에서 회원정보의 값을 가져오는 메서드
+	public LogonDTO getMember (String id, String pass) {
+		// DTO리턴
+		LogonDTO member = new LogonDTO();
+		
+		try {
+			String orgPass = pass;
+			byte[] targetBytes = orgPass.getBytes();
+			
+			// 디코딩 (암호 디코딩해서 변수에 담아야 함)
+			Decoder decoder = Base64.getDecoder();
+			
+			String sql = "SELECT id, email, name, address FROM member where id = ?";
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {  // 만약 아이디가 존재한다면 
+				// 암호 디코딩해서 폼에서 넘어온 Pass 와 같은지 처리
+				String dbpass = rs.getString("pass");
+				byte[] decodedBytes = decoder.decode(dbpass);
+				String decodedTxt = new String (decodedBytes); // decode처리됨
+				System.out.println(decodedTxt);
+				if(orgPass.equals(decodedTxt)) {
+					// DB의 passwd와 폼에서 넘겨온 Pass가 같을 때 처리할 부분
+						// DB에서 select한 레코드를 DTO (LogonDataBean)에 Setter주입해서 값을 반환
+					
+					// 객체 생성후 DB의 rs에 저장된 값을 Setter주입
+					
+					member.setId(rs.getString("id"));  // 컬럼명 , rs.getString(1)도 가능
+					member.setEmail(rs.getString("email"));
+					member.setName(rs.getString("name"));
+					member.setAddress(rs.getString("address"));
+					member.setTel(rs.getString("tel"));
+				}else {
+					// DB의 passwd와 폼에서 넘겨온 Pass가 다를 때 처리할 부분
+					System.out.println("비밀번호 다름");
+				}
+			}	
+		} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("회원 정보 읽어오는 중 예외 발생");
+		}finally {
+			instance.close(); // 객체 사용 종료. rs, psmt, con
+		}
+			
+		return member;
+		}
+		
+		
+		// 수정 페이지에서 수정한 내용을 DB에 저장하는 메서드
+			// 회원정보 수정처리 (modifyPro.jsp)에서 회원정보를 수정처리하는 메서드
+	public int updateMember (LogonDTO member) {
+		int x = -1;  //업데이트 실패
+		
+		// 아이디와 패스워드 확인 절차를 거친 후 업데이트 진행
+			// 넘어온 비밀번호를 암호화 시켜서 db에 있는 암호화된 비밀번호의 값과 대조해야 함
+		try {
+			String orgPass = member.getPass();   // 비밀전호 안들어올 경우 유효성검사
+			byte[] targetBytes = orgPass.getBytes();
+			
+			// Base64 인코딩
+			Encoder encoder = Base64.getEncoder();
+			byte[] encodedBytes = encoder.encode(targetBytes);
+			String encodedTxt = new String(encodedBytes);
+			
+			// Base64디코딩
+			Decoder decoder = Base64.getDecoder();
+			
+			String sql = "SELECT pass FROM member WHERE id = ?";
+			
+			psmt = con.prepareStatement(sql);
+			psmt.setString(1, member.getId()); 
+			rs= psmt.executeQuery(); 
+			
+			if(rs.next()) {  //해당 아이디가 db에 존재한다.
+				// 폼에서 넘긴 패스워드와 db에서 가져온 패스워드가 일치하는ㄴ지 확인 후 처리
+				String dbpass = rs.getString("pass");
+				byte[] decodedBytes = decoder.decode(dbpass);
+				String decodedTxt = new String (decodedBytes); // decode처리됨
+				
+				if(orgPass.equals(decodedTxt)) {
+					//DTO(member)에서 들어온 값을 db에 update
+					sql = "UPDATE member SET email = ?, name = ?, address = ?, tel = ? where id = ?";
+					psmt = con.prepareStatement(sql);
+					psmt.setString(1, member.getEmail());
+					psmt.setString(2, member.getName());
+					psmt.setString(3, member.getAddress());
+					psmt.setString(4, member.getTel());
+					psmt.setString(5, member.getId());
+					psmt.executeUpdate();
+					x = 1;  //update성공시 x변수에 1을 할당
+							
+				}else { //해당 아이디가 존재하지 않는다면
+					
+				}
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("회원정보 수정 시 예외발생");
+		}finally {
+			instance.close();
+		}
+		return x;
+	}
 	
 	
 	

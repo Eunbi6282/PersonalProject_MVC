@@ -62,14 +62,14 @@ $(document).ready(function(){
 function checkIt() {
 	status = true;
 	
-    if(!$("#id").val()) {//아이디를 입력하지 않으면 수행
+    if($("#id").val() == null) {//아이디를 입력하지 않으면 수행
         alert("아이디를 입력하세요");
         $("#id").focus();
         status = false;
         return false;//사용자가 서비스를 요청한 시점으로 돌아감
     }
     
-    if(!$("#pass").val()) {//비밀번호를 입력하지 않으면 수행
+    if($("#pass").val() == null) {//비밀번호를 입력하지 않으면 수행
         alert("비밀번호를 입력하세요");
         $("#pass").focus();
         status = false;
@@ -103,4 +103,5 @@ function checkIt() {
         status = false;
         return false;
     }  
-}
+    return true;
+};
