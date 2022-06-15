@@ -10,9 +10,8 @@
 <body>
 	<jsp:include page="head.jsp" flush="false"/>
 	
-	<h2> 상세보기</h2>
 	
-	<table border = "1" width = "90%">
+	<table border = "1" width = "80%" style = "margin-left:100px; margin-rignt:150px" align = "center">
 		<colgroup>
 			<col width = "15%" /> <col width = "35%" />
 			<col width = "15%"/> <col width = "*"/>

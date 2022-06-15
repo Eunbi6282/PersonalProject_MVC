@@ -118,7 +118,7 @@ public class LogonDAO extends DBConnPool{
 					x = -1;  // 패스워드가 일치하지 않을 때
 				}
 				
-				System.out.println(x);
+				//System.out.println(x);
 			}
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -160,7 +160,7 @@ public class LogonDAO extends DBConnPool{
 			// 디코딩 (암호 디코딩해서 변수에 담아야 함)
 			Decoder decoder = Base64.getDecoder();
 			
-			String sql = "SELECT id, email, name, address FROM member where id = ?";
+			String sql = "SELECT id, email, name, address, tel FROM member where id = ?";
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
@@ -191,7 +191,7 @@ public class LogonDAO extends DBConnPool{
 				e.printStackTrace();
 				System.out.println("회원 정보 읽어오는 중 예외 발생");
 		}finally {
-			instance.close(); // 객체 사용 종료. rs, psmt, con
+			//instance.close(); // 객체 사용 종료. rs, psmt, con
 		}
 			
 		return member;
@@ -242,7 +242,7 @@ public class LogonDAO extends DBConnPool{
 					x = 1;  //update성공시 x변수에 1을 할당
 							
 				}else { //해당 아이디가 존재하지 않는다면
-					
+					System.out.println("회원수정 비밀번호 확인바람");
 				}
 			}
 		}catch (Exception e) {

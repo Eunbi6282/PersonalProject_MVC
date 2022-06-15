@@ -19,12 +19,23 @@ public class CartDAO extends DBConnPool{
 		super();
 	}
 	
-	
-	
-	
-	
-	
-	
+	public int getAmount(int amount) {
+		
+		try {
+			String query = "UPDATE cart SET amount = ?";
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1, amount);
+			psmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("amount값 가져오는 중 예외발생");
+		}
+		
+		return amount;
+		
+	}
 	public List<CartDTO> cartMoney(){
 		return null;
 	}
@@ -42,6 +53,9 @@ public class CartDAO extends DBConnPool{
 				psmt.setString(2, dto.getP_id());
 				psmt.setInt(3, dto.getAmount());
 				result = psmt.executeUpdate();
+				System.out.println(dto.getId());
+				System.out.println(dto.getAmount());
+				System.out.println(dto.getP_id());
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -54,8 +68,8 @@ public class CartDAO extends DBConnPool{
 	public ArrayList<CartDTO> listCart (String id) {
 		ArrayList<CartDTO> cartlist = new ArrayList<CartDTO>();
 		try {
-			String query = "SELECT cart_id, p.p_id, c.id, name, pname, amount, price, downprice, "
-					+ " CASE WHEN p.downprice <> 0 and p.price >= p.downprice THEN p.downprice ELSE p.price END AS cart_price, (cart_price*amount) as money"
+			String query = "SELECT cart_id, p.p_id, c.id, name, pname, amount, price, downprice,  "
+					+ " CASE WHEN p.downprice <> 0 and p.price >= p.downprice THEN p.downprice ELSE p.price END AS cart_price, (cart_price*amount) as money, pImg"
 					+ " FROM member m, cart c, product p"
 					+ " WHERE m.id=c.id and c.p_id=p.p_id and c.id=? order by cart_id";
 			
@@ -83,6 +97,7 @@ public class CartDAO extends DBConnPool{
 //				}
 //				
 				dto.setMoney(rs.getInt("money"));
+				
 				cartlist.add(dto);
 			}
 		} catch (Exception e) {

@@ -22,12 +22,12 @@
 	 <%= uid %> 님 환영합니다.
 	<aside id="left">
         <ul>
-            <li><a href="top_view.jsp" target="iframe1">TOP</a></li>
-            <li><a href="./clothing.html" target="iframe1">BOTTOM</a></li>
-            <li><a href="./music.html" target="iframe1">OUTER</a></li>
-            <li><a href="./movie.html" target="iframe1">DRESS</a></li>
-            <li><a href="./computer.html" target="iframe1">SHOES/BAG</a></li>
-            <li><a href="./computer.html" target="iframe1">ACC</a></li>
+            <li><a href="category_view.jsp?category=TOP" target="iframe1">TOP</a></li>
+            <li><a href="category_view.jsp?category=BOTTOM" target="iframe1">BOTTOM</a></li>
+            <li><a href="category_view.jsp?category=OUTER" target="iframe1">OUTER</a></li>
+            <li><a href="category_view.jsp?category=DRESS" target="iframe1">DRESS</a></li>
+            <li><a href="category_view.jsp?category=SHOES/BAG" target="iframe1">SHOES/BAG</a></li>
+            <li><a href="category_view.jsp?category=ACC" target="iframe1">ACC</a></li>
         </ul>
     </aside>
 	

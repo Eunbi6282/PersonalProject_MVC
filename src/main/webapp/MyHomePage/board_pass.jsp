@@ -20,23 +20,24 @@
 <body>
 	
 	<jsp:include page="head.jsp" flush="false"/>
-	<h2> 비밀번호를 입력하세요 </h2>
-	
-	<form name ="WriteForm" method = "post" action = "../MyHomePage/pass.do" onsubmit = "return validateForm(this);">
+	<h2 style = "text-align:center"> 비밀번호를 입력하세요 </h2>
+	&nbsp;&nbsp;
+	<form name ="WriteForm" method = "post" action = "../MyHomePage/pass.do" onsubmit = "return validateForm(this);" 
+	style = "width:90%; align:center; margin-left:300px">
 		<input type = "hidden" name = "num" value = "${param.num}" />
 		<input type = "hidden" name = "mode" value = "${param.mode }" />
 		
-		<table border = "1" width = "90%">
+		<table border = "1" width = "50%">
 			<tr>
 				<td> 비밀번호 : </td>
 				<td>
-					<input type = "password" name = "pass" style = "width : 100px;">
+					<input type = "password" name = "pass" style = "width : 100%;">
 				</td>
 			</tr>
 			<tr>
 				<td colspan = "2" align = "center">
 					<button type = "submit">검증하기</button>
-					<button type = "reset">Reset</button>
+					&nbsp;
 					<button type = "button" onclick = "location.href = '../MyHomePage/board_list.do';">목록</button>
 				</td>
 			</tr>

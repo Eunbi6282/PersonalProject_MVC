@@ -59,7 +59,42 @@ public class ProductDAO {
 		ArrayList<ProductDTO> pList = new ArrayList<ProductDTO>();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductDTO pp = new ProductDTO();
+				
+				pp.setP_id(rs.getString(1));
+				pp.setCategory(rs.getString(2));
+				pp.setWname(rs.getString(3));
+				pp.setPname(rs.getString(4));
+				pp.setSname(rs.getString(5));
+				pp.setPrice(rs.getInt(6));
+				pp.setDownprice(rs.getInt(7));
+				pp.setInputdate(rs.getString(8));
+				pp.setStock(rs.getInt(9));
+				pp.setDescription(rs.getString(10));
+				pp.setpImg(rs.getString(11));
+				pList.add(pp);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("리스트 오류");
+		}
+		
+		return pList;
+	}
+	
+	//get Category
+	public ArrayList<ProductDTO> getCategory(String category){
+		String sql = "SELECT * FROM product where category = ? ORDER BY p_id desc";
+		
+		ArrayList<ProductDTO> pList = new ArrayList<ProductDTO>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				ProductDTO pp = new ProductDTO();
@@ -115,9 +150,9 @@ public class ProductDAO {
 		ArrayList<ProductDTO> productview = new ArrayList<ProductDTO>();
 		
 		try {
-			String query = "SELECT p.p_id, c.id, pname, category, sname, price, downprice, description, pImg, amount"
-					+ " FROM product p, cart c , member m"
-					+ " WHERE p.p_id = c.p_id and c.id = m.id and p.p_id = ?";
+			String query = "SELECT p_id, pname, category, sname, price, downprice, description, pImg"
+					+ " FROM product"
+					+ " WHERE p_id = ?";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, p_id);
 			rs = pstmt.executeQuery();
@@ -125,15 +160,13 @@ public class ProductDAO {
 			while (rs.next()) {
 				ProductDTO dto = new ProductDTO();
 				dto.setP_id(rs.getString("p_id"));
-				dto.setId(rs.getString("id"));
-				dto.setCategory("category");
+				dto.setCategory(rs.getString("category"));
 				dto.setPname(rs.getString("pname"));
 				dto.setSname(rs.getString("sname"));
 				dto.setPrice(rs.getInt("price"));
 				dto.setDownprice(rs.getInt("downprice"));
 				dto.setDescription(rs.getString("description"));
 				dto.setpImg(rs.getString("pImg"));
-				dto.setAmount(rs.getInt("amount"));
 				
 				//System.out.println(rs.getInt("amount"));
 				//System.out.println(rs.getString("pImg"));

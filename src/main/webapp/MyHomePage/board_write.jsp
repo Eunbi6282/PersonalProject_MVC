@@ -57,7 +57,7 @@
 	
 	%>
 
-	<form name = "writeForm" method = "post" enctype = "multipart/form-data" action = "../MyHomePage/board_write.do" onsubmit = "return validateForm(this);">
+	<form name = "writeForm" method = "post" enctype = "multipart/form-data" action = "../MyHomePage/board_write.do" onsubmit = "return validateForm(this);" style = "margin-left:100px">
 		<table border = "1" width = "80%" >
 			<tr>
 				<td> 작성자 : </td>
@@ -92,7 +92,6 @@
 			<tr>
 				<td colspan = "2" align = "center">
 					<button type = "submit"> 작성완료 </button>
-					<button type = "reset"> RESET </button>
 					<button type = "button" onclick = "location.href='../MyHomePage/board_list.do';">
 						목록 바로가기
 					</button>

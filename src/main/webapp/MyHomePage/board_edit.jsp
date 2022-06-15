@@ -7,20 +7,20 @@
 <title>글 수정</title>
 </head>
 <body>
-	<h2> 수정하기 </h2>
 	 <!-- 폼에서 파일을 업로드 할 떄 => 2가지 규칙
 	 	1. method가 반드시 post방식이어야 함
 	 	2. enctype = multipart/form-data로 설정이 되어야 한다.
 	 		form의 모든 변수느 request객체가 아닌 라이브러리에서 지정한 메서드에서 변수의 값을 받는다. 
 	  -->
-	  
-	  <form name = "writeForm" method = "post" enctype = "multipart/form-data" action = "../MyHomePage/board_edit.do" onsubmit = "return validateForm(this);">
+	  <%@ include file="../MyHomePage/main.jsp" %>
+	  <form name = "writeForm" method = "post" enctype = "multipart/form-data" 
+	  action = "../MyHomePage/board_edit.do" onsubmit = "return validateForm(this);" >
 	  	<!-- 넘어온 변수값을 다음 페이지로 전송하기 위한 hidden -->
 	  	<input type = "hidden" name = "num" value = "${dto.num }">
 	  	<input type = "hidden" name = "prevOfile" value = "${dto.ofile }">
 	  	<input type = "hidden" name = "prevSfile" value = "${dto.sfile }">
 	  	
-	  	<table border = "1" width = "90%">
+	  	<table border = "1" width = "50%">
 	  		<tr>
 				<td> 작성자</td>
 				<td>
@@ -48,7 +48,7 @@
 			<tr>
 				<td colspan = "2" align = "center">
 					<button type = "submit"> 작성 완료</button>
-					<button type = "reset"> RESET </button>
+					&nbsp;
 					<button type = "button" onClick = "location.href = '../MyHomePage/board_list.do';"> 목록 바로가기 </button>
 				</td>
 			</tr>
