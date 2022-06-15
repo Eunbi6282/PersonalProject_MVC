@@ -51,7 +51,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- MVCboard 글 목록보기 Controller 매핑 설정-->
+	<!-- 게시판 글 목록보기 Controller 매핑 설정-->
 	<servlet>
 		<servlet-name>BoardList</servlet-name>
 		<servlet-class>board.ListController</servlet-class>
@@ -61,7 +61,7 @@
 		<url-pattern>/MyHomePage/board_list.do</url-pattern>
 	</servlet-mapping>
 	
-	<!-- MVCboard 글 상세보기 Controller 매핑 설정-->
+	<!-- 게시판 글 상세보기 Controller 매핑 설정-->
 	<servlet>
 		<servlet-name>BoardView</servlet-name>
 		<servlet-class>board.ViewController</servlet-class>
@@ -71,7 +71,7 @@
 		<url-pattern>/MyHomePage/board_view.do</url-pattern>
 	</servlet-mapping>
 	
-	<!-- MVCboard 글쓰기 Controller 매핑 설정-->
+	<!-- 게시판 글쓰기 Controller 매핑 설정-->
 	<servlet>
 		<servlet-name>BoardWrite</servlet-name>
 		<servlet-class>board.WriteController</servlet-class>
@@ -81,7 +81,7 @@
 		<url-pattern>/MyHomePage/board_write.do</url-pattern>
 	</servlet-mapping>
 	
-	<!-- MVCboard 다운로드 Controller 매핑 설정-->
+	<!-- 게시판 다운로드 Controller 매핑 설정-->
 	<servlet>
 		<servlet-name>BoardDown</servlet-name>
 		<servlet-class>board.DownloadController</servlet-class>
@@ -91,7 +91,7 @@
 		<url-pattern>/MyHomePage/download.do</url-pattern>
 	</servlet-mapping>
 	
-	<!-- MVCboard 비밀번호검증 Controller 매핑 설정-->
+	<!-- 게시판 비밀번호검증 Controller 매핑 설정-->
 	<servlet>
 		<servlet-name>BoardPass</servlet-name>
 		<servlet-class>board.PassController</servlet-class>
@@ -101,7 +101,7 @@
 		<url-pattern>/MyHomePage/pass.do</url-pattern>
 	</servlet-mapping>
 	
-	<!-- MVCboard 글수정 Controller 매핑 설정-->
+	<!-- 게시판 글수정 Controller 매핑 설정-->
 	<servlet>
 		<servlet-name>BoardEdit</servlet-name>
 		<servlet-class>board.EditController</servlet-class>

@@ -57,8 +57,8 @@
 	
 	%>
 
-	<form name = "writeForm" method = "post" enctype = "multipart/form-data" action = "../MyHomePage/board_write.do" onsubmit = "return validateForm(this);" style = "margin-left:100px">
-		<table border = "1" width = "80%" >
+	<form name = "writeForm" method = "post" enctype = "multipart/form-data" action = "../MyHomePage/board_write.do" onsubmit = "return validateForm(this);" style = "margin-left:320px">
+		<table border = "1" width = "70%" >
 			<tr>
 				<td> 작성자 : </td>
 				<td>

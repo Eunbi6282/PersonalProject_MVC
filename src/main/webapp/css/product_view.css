@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+#mun_information {
+    margin: 0 0 10px;
+    position: relative;
+}
+#mun_information .mun-path {
+    margin: 0 0 10px;
+    font-size: 12px;
+    line-height: 15px;
+    color: #888;
+}
+ol {
+    list-style-position: inside;
+}
+#mun_information .mun-path li {
+    display: inline-block;
+    padding-left: 5px;
+    text-transform: capitalize;
+}
+
+#mun_information .mun-detail-list:first-child {
+    margin-bottom: 10px;
+}
+
+#mun_information .mun-detail-list {
+    margin: 5px 0;
+    line-height: 15px;
+}
+#mun_information .mun-detail-list:first-child .mun-detail-desc span {
+    font-weight: 600 !important;
+}
+

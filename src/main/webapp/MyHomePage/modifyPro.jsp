@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "logon.LogonDAO" %>
 <%@ page import = "logon.LogonDTO" %>
-<script src="../js/jquery-1.11.0.min.js"></script>
-<script src="modify.js"></script>
+
 
 
 <% request.setCharacterEncoding("utf-8");%>

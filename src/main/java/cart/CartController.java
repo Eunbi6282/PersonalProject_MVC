@@ -14,7 +14,7 @@ public class CartController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String p_img = req.getParameter("p_img");
+		String p_img = req.getParameter("pImg");
 
 		HttpSession session = req.getSession(true);
 		session.setAttribute("p_img", p_img);
@@ -32,9 +32,9 @@ public class CartController extends HttpServlet{
 			id = req.getParameter("id");
 		}
 		int amount = Integer.parseInt(req.getParameter("amount"));
-		System.out.println(amount);
-	    System.out.println(p_id);
-		System.out.println(id);
+		//System.out.println(amount);
+	    //System.out.println(p_id);
+		//System.out.println(id);
 		
 		dto.setId(id);
 		dto.setP_id(p_id);

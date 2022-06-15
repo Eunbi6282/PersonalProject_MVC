@@ -71,6 +71,7 @@
 			        <div class="col-auto d-none d-lg-block">
 			          <img class="bd-placeholder-img" width="200" height="300px" src="../images/products/<%=list1.get(i).getpImg() %>.jpg" role="img" 
 			          aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice">
+			          <input type = "hidden"  id = "pImg" name = "pImg" value = "<%=list1.get(i).getpImg() %>">
 			        </div>
 			      </div>
 			    </div>

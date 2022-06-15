@@ -83,9 +83,9 @@ public class LogonDAO extends DBConnPool{
 		// 사용자 인증(MemberCheck.jsp)에서 사용하는 메서드
 	public int userCheck(String id, String pass) {
 		int x = -1;
-		System.out.println("로그인 메소드 호출 성공");
-		System.out.println(id); 
-		System.out.println(pass); 
+		//System.out.println("로그인 메소드 호출 성공");
+		//System.out.println(id); 
+		//System.out.println(pass); 
 		// 복호화 : 암호화된 Password를 해독된 Password로 변환
 		try {
 			String orgPass = pass;

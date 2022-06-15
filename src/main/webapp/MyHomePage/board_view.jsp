@@ -11,29 +11,29 @@
 	<jsp:include page="head.jsp" flush="false"/>
 	
 	
-	<table border = "1" width = "80%" style = "margin-left:100px; margin-rignt:150px" align = "center">
+	<table border = "1" width = "50%" style = "margin-left:320px; margin-rignt:100px" align = "center" text-align = "center">
 		<colgroup>
 			<col width = "15%" /> <col width = "35%" />
 			<col width = "15%"/> <col width = "*"/>
 		</colgroup>
 	
 	<!--  게시글 정보 출력 -->
-	<tr>
+	<tr align = "center">
 		<td>번호</td> <td> ${dto.num} </td>
 		<td>작성자</td><td> ${dto.name} </td>
 	</tr>
 	
-	<tr>
+	<tr align = "center">
 		<td>작성일</td> <td> ${dto.postdate } </td>
 		<td>조회수</td><td> ${dto.visitcount} </td>
 	</tr>
 	
-	<tr>
+	<tr align = "center">
 		<td> 내용</td>
 		<td colspan = "3" height = "100"> ${dto.content } </td>
 	</tr>
 	<!-- 첨부파일 -->
-	<tr>
+	<tr align = "center">
 		<td> 첨부파일</td>
 		<td>
 			<c:if test="${not empty dto.ofile }"> <!-- 첨부파일이 존재할 때 -->
@@ -51,11 +51,13 @@
 		</td>
 	</tr>
 	<!-- 하단 메뉴 버튼 -->
-	<tr> <!-- td 4개 합침 -->
+	<tr align = "center"> <!-- td 4개 합침 -->
 		<td colspan = "4" align = "center">
 		<!-- param.idx => 넘어오는 idx값 -->
 			<button type = "button" onclick = "location.href='../MyHomePage/pass.do?mode=edit&num=${param.num}';"> 수정하기</button>
+			&nbsp;&nbsp;&nbsp;
 			<button type = "button" onclick = "location.href='../MyHomePage/pass.do?mode=delete&num=${param.num}';"> 삭제하기 </button>
+			&nbsp;&nbsp;&nbsp;
 			<button type = "button" onclick = "location.href='../MyHomePage/board_list.do';"> 목록 바로가기</button>
 		</td>
 	</tr>
