@@ -3,14 +3,19 @@
 <%@ page import = "logon.LogonDAO" %>
 <%@ page import = "logon.LogonDTO" %>
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
 <script src="../js/jquery-1.11.0.min.js"></script>
 <script src="modify.js"></script>
-
-<% request.setCharacterEncoding("UTF-8"); %>
+</head>
+<body>
+	<jsp:include page="head.jsp" flush="false"/>
 
 <% 
-String id = (String) session.getAttribute("id");
+	String id = (String) session.getAttribute("id");
 	String pass = request.getParameter("pass");
 	
 	LogonDAO manager = LogonDAO.getInstance();
@@ -18,8 +23,7 @@ String id = (String) session.getAttribute("id");
 	
 	try{
 %>
-	<jsp:include page="head.jsp" flush="false"/>
-		<form method = "post" >
+		<form>
 			<div id="regForm" class="box" align = "center">
 			   <ul>
 			      <li><p class="center">회원 정보 수정
@@ -44,3 +48,6 @@ String id = (String) session.getAttribute("id");
 			</div>
 		</form>
 <% } catch(Exception e) {} %>
+
+</body>
+</html>

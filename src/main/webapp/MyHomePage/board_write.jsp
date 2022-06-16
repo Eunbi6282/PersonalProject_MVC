@@ -92,8 +92,9 @@
 			<tr>
 				<td colspan = "2" align = "center">
 					<button type = "submit"> 작성완료 </button>
+					&nbsp;&nbsp;
 					<button type = "button" onclick = "location.href='../MyHomePage/board_list.do';">
-						목록 바로가기
+						목록 
 					</button>
 				</td>
 			</tr>

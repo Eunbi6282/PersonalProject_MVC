@@ -49,7 +49,7 @@
 				<td colspan = "2" align = "center">
 					<button type = "submit"> 작성 완료</button>
 					&nbsp;
-					<button type = "button" onClick = "location.href = '../MyHomePage/board_list.do';"> 목록 바로가기 </button>
+					<button type = "button" onClick = "location.href = '../MyHomePage/board_list.do';"> 목록 </button>
 				</td>
 			</tr>
 	  	</table>

@@ -51,6 +51,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	
 	<!-- 게시판 글 목록보기 Controller 매핑 설정-->
 	<servlet>
 		<servlet-name>BoardList</servlet-name>

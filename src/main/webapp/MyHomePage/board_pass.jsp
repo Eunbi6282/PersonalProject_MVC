@@ -23,7 +23,7 @@
 	<h2 style = "text-align:center"> 비밀번호를 입력하세요 </h2>
 	&nbsp;&nbsp;
 	<form name ="WriteForm" method = "post" action = "../MyHomePage/pass.do" onsubmit = "return validateForm(this);" 
-	style = "width:90%; align:center; margin-left:300px">
+	style = "width:50%; align:center; margin-left:530px">
 		<input type = "hidden" name = "num" value = "${param.num}" />
 		<input type = "hidden" name = "mode" value = "${param.mode }" />
 		
@@ -36,7 +36,7 @@
 			</tr>
 			<tr>
 				<td colspan = "2" align = "center">
-					<button type = "submit">검증하기</button>
+					<button type = "submit">확인</button>
 					&nbsp;
 					<button type = "button" onclick = "location.href = '../MyHomePage/board_list.do';">목록</button>
 				</td>

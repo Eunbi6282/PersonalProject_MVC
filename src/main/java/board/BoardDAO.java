@@ -59,7 +59,7 @@ public class BoardDAO extends DBConnPool{
 					+ " LIKE '%" + map.get("searchWord") + "%' ";
 			}
 			
-			query += "		ORDER BY num DESC"
+			query += "		ORDER BY postdate DESC"
 					+ " ) Tb "
 					+ ") " 
 					+" WHERE rNUM BETWEEN ? AND ?"

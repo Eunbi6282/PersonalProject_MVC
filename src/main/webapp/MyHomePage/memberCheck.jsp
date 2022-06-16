@@ -12,5 +12,6 @@
    LogonDAO manager = LogonDAO.getInstance();
    int check = manager.userCheck(id, passwd);
    
-   out.println(check);
+   out.print(check);
+   
 %>

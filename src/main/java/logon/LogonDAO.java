@@ -49,7 +49,7 @@ public class LogonDAO extends DBConnPool{
 			e.printStackTrace();
 			System.out.println("회원정보 DB입력시 예외 발생");
 		}finally {
-			instance.close();
+			//instance.close();
 		}
 	}
 	
@@ -151,7 +151,7 @@ public class LogonDAO extends DBConnPool{
 	// 회원정보 DB에서 가져와서 수정(modifyForm.jsp): DB에서 회원정보의 값을 가져오는 메서드
 	public LogonDTO getMember (String id, String pass) {
 		// DTO리턴
-		LogonDTO member = new LogonDTO();
+		LogonDTO member = null;
 		
 		try {
 			String orgPass = pass;
@@ -160,12 +160,13 @@ public class LogonDAO extends DBConnPool{
 			// 디코딩 (암호 디코딩해서 변수에 담아야 함)
 			Decoder decoder = Base64.getDecoder();
 			
-			String sql = "SELECT id, email, name, address, tel FROM member where id = ?";
+			String sql = "SELECT id, name, address, tel FROM member where id = ?";
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {  // 만약 아이디가 존재한다면 
+				member = new LogonDTO();
 				// 암호 디코딩해서 폼에서 넘어온 Pass 와 같은지 처리
 				String dbpass = rs.getString("pass");
 				byte[] decodedBytes = decoder.decode(dbpass);
@@ -178,7 +179,6 @@ public class LogonDAO extends DBConnPool{
 					// 객체 생성후 DB의 rs에 저장된 값을 Setter주입
 					
 					member.setId(rs.getString("id"));  // 컬럼명 , rs.getString(1)도 가능
-					member.setEmail(rs.getString("email"));
 					member.setName(rs.getString("name"));
 					member.setAddress(rs.getString("address"));
 					member.setTel(rs.getString("tel"));
@@ -249,7 +249,7 @@ public class LogonDAO extends DBConnPool{
 			e.printStackTrace();
 			System.out.println("회원정보 수정 시 예외발생");
 		}finally {
-			instance.close();
+			//instance.close();
 		}
 		return x;
 	}

@@ -28,6 +28,7 @@
          <a href="joinForm.jsp">
              <span class="title">회원가입</span>
          </a>
+         &nbsp;&nbsp;&nbsp;
          <a href="loginForm.jsp">
              <span class="title">로그인</span>
          </a>  
@@ -40,6 +41,7 @@
 	         <a href = "logout.jsp">
 	             <span class="title" id = "logout">로그아웃</span>
 	         </a>
+	         &nbsp;&nbsp;&nbsp;
 	         <a href="modify_chPass.jsp">
 	             <span class="title">회원정보수정</span>
 	         </a>  
@@ -47,7 +49,7 @@
   	<%
 		}
 	%>
-    <div class="_3aNsjos9K5">
+    <div id="_3aNsjos9K5" style = "position: relative!important; padding: 50px 0 22px!important;">
 		<h1 class = "bekkwdip3W"><a href="main.jsp">TTEI</a></h1>
 		<div class="top_left">
 			<div class="top_left">

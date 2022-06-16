@@ -8,18 +8,20 @@ $(document).ready(function(){
 		var query = {pass:$("#pass").val()};
 		
 		$.ajax({
-			type: "post",
-			url: "memberCheck.jsp",
-			data: query,
+			type:"POST",
+			url:"memberCheck.jsp",
+			data:query,
 			succes: function(data) {
-				if(data == 1) { //비밀번호 맞음
-					location.herf = 'modifyForm.jsp?pass=' + $("#pass").val();
-				} else {
-					alert("비밀번호가 맞지 않습니다.");
+				if(data == 1){//비밀번호 맞음
+					//회원탈퇴 페이지 deletePro.jsp 실행
+				  window.location.href = "modifyForm.jsp?pass=" + $("#pass").val();
+				}else {//비밀번호 틀림
+		    	  	 alert("비밀번호가 맞지 않습니다.");
 		    	  	 $("#pass").val("");
 		    	  	 $("#pass").focus();
-				}
+		    	 }   
 			}
+			
 		});
 	});
 	
