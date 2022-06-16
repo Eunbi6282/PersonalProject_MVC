@@ -132,6 +132,16 @@
 		<url-pattern>/MyHomePage/cart_list.do</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 장바구니 삭제 매핑 설정-->
+	<servlet>
+		<servlet-name>CartDelete</servlet-name>
+		<servlet-class>cart.DeleteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CartDelete</servlet-name>
+		<url-pattern>/MyHomePage/delete.do</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 페이징 처리를 위한 설정 (변수값 할당) 출력 레코드 수 :10개, 페이지수 : 5-->
 	<context-param>
 		<param-name>POSTS_PER_PAGE</param-name>

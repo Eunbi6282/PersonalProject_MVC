@@ -97,6 +97,7 @@ public class CartDAO extends DBConnPool{
 //				}
 //				
 				dto.setMoney(rs.getInt("money"));
+				dto.setpImg(rs.getString("pImg"));
 				
 				cartlist.add(dto);
 			}
@@ -110,10 +111,52 @@ public class CartDAO extends DBConnPool{
 	}
 	
 	
+	//getCart
+	public ArrayList<CartDTO> getCartid (int cart_id) {
+		ArrayList<CartDTO> cart = new ArrayList<>();
+		
+		try {
+			String sql = "SELECT m.id, p.p_id, c.cart_id"
+					+ " FROM member m, product p, cart "
+					+ " WHERE m.id = c.id and p.p_id = c.p_id and c.cart_id = ?";
+			psmt = con.prepareStatement(sql);
+			psmt.setInt(1, cart_id);
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				CartDTO dto = new CartDTO();
+				dto.setId(rs.getString("id"));
+				dto.setP_id(rs.getString("p_id"));
+				dto.setCart_id(rs.getInt("cart_id"));
+				
+				cart.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("cart_id로드 중 예외발생");
+		}
+		
+		return cart;
+		
+	}
+	
 	// delete
-//		public void delete (int cart_id) {
-//			
-//		}
+	public int deleteCart (int cartid) {
+		int result = 0;
+		
+		try {
+			String query = "DELETE cart WHERE cart_id = ?";
+			psmt = con.prepareStatement(query);
+			psmt.setInt(1, cartid);
+			
+			result = psmt.executeUpdate();	//result가 0보다 크면 삭제 성공, result가 0이면 삭제 실패
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("장바구니 Delete시 예외발생");
+		}
+		return result;
+	}
 
 	// delteAll
 //		public void deleteAll (String id) {
@@ -130,18 +173,5 @@ public class CartDAO extends DBConnPool{
 //			
 //		}
 
-	// countCart 장바구니 상품 개수 
-//		public int countCart(String id, String p_id) {
-//			
-//		}
 	
-	// updateCart  장바구니 수정
-//		public void updateCart(CartDTO dto) {
-//			
-//		}
-
-	// modifyCart
-//		public void modifyCart(CartDTO dto) {
-//			
-//		}
 }

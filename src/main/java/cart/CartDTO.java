@@ -11,6 +11,7 @@ public class CartDTO {
 	private int downprice;
 	private int money;
 	private int amount;
+	private String pImg;
 	
 	
 	//Getter Setter
@@ -18,6 +19,12 @@ public class CartDTO {
 	
 	public String getName() {
 		return name;
+	}
+	public String getpImg() {
+		return pImg;
+	}
+	public void setpImg(String pImg) {
+		this.pImg = pImg;
 	}
 	public int getCart_price() {
 		return cart_price;

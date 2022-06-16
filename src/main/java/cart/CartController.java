@@ -31,6 +31,7 @@ public class CartController extends HttpServlet{
 		if(req.getParameter("id") != null) {
 			id = req.getParameter("id");
 		}
+		
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		//System.out.println(amount);
 	    //System.out.println(p_id);

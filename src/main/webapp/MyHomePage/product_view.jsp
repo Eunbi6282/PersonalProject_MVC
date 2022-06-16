@@ -3,8 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "product.ProductDAO" %>
 <%@ page import = "product.ProductDTO" %>
-<%@ page import = "product.ProductDTO" %>
-<%@ page import = "product.ProductDTO" %>
 
 <%@ page import = "java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -82,7 +80,7 @@
 		try {		
 	%>	
 	
-	<form name = "frm1" method = "get" action ="cart_list.do?p_id=<%=p_id %>&id=<%=id %>&pImg=<%=pImg %>">
+	<form name = "frm1" method = "get" action ="cart_list.do?p_id=<%=p_id %>&id=<%=id %>">
 		<span style="font-size:11px;color:#111111;"> 
 			개수
 			<input type = "number" class = "amount" size = "14px" id = "amount" name = "amount" value = "" onclick = "">
